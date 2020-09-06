@@ -1,0 +1,137 @@
+<div class="container"
+>
+    <form [formGroup]="Registration" (submit)="addForm()">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">First Name </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="fname">
+                <small *ngIf="submitted && Registration.get('fname').errors?.required" class="text-danger"> First Name  is required</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Last Name </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="lname">
+                <small *ngIf="submitted && Registration.get('lname').errors?.required" class="text-danger"> Last Name is required</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email </label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control " formControlName="email">
+                    <small *ngIf="submitted && Registration.controls.email.errors?.required" class="text-danger"> Email is required</small>
+                    <small *ngIf="submitted && Registration.controls.email.errors?.emailValid" class="text-danger"> invalid Email </small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Password </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" formControlName="password">
+                <small *ngIf="submitted && Registration.controls.password.errors?.required" class="text-danger"> Password is required</small>
+                <small *ngIf="submitted && Registration.controls.password.errors?.passwordValid" class="text-danger">only number is allowed in password field</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Confirm Password </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" formControlName="confirmPassword">
+
+                <div *ngIf="submitted && Registration.controls.confirmPassword.errors?.required">
+                    <small *ngIf="Registration.controls.confirmPassword.errors?.required" class="text-danger"> Confirm Password is required</small>
+                </div>
+                <small *ngIf="submitted && Registration.controls.confirmPassword.errors?.confirmPasswordValid" class="text-danger">Password and confirm password does not match </small>                         
+             </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2" > Gender </label>
+            <div class="col-sm-4">
+                <input type="radio" value="male" name="gender" formControlName="gender">
+                <label for="male" class="ml-1"> Male </label>
+
+                <input type="radio" class="ml-4" value="female" name="gender" formControlName="gender">
+                <label for="female" class="ml-1" > Female </label>
+                <br>
+                <small *ngIf="submitted && Registration.get('gender').errors?.required" class="text-danger"> Gender is required</small>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Company Name </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="company">
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Address </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="address">
+                <small *ngIf="submitted && Registration.get('address').errors?.required" class="text-danger"> Address is required</small>
+            
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Select Country </label>
+            <div class="col-sm-10">
+                <select class="form-control" formControlName="country" (change)="addCountry($event)">
+                        <option selected hidden> Select </option>
+                        <option> India </option>
+                        <option> Usa </option>
+                </select>
+                <small *ngIf="submitted && Registration.get('country').errors?.required" class="text-danger"> Country is required</small>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Select State </label>
+            <div class="col-sm-10" *ngFor="let c of arrState">
+                <select class="form-control" formControlName="state">
+                        <option selected hidden> Select </option>
+                        <option [value]="c.value">{{c.name}}</option>
+                </select>
+                <small *ngIf="submitted && Registration.get('state').errors?.required" class="text-danger"> State is required</small>
+            </div>
+        </div>
+
+        
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Select City </label>
+            <div class="col-sm-10" *ngFor="let c of arrCity">
+                <select class="form-control" formControlName="city">
+                        <option selected hidden> Select </option>
+                        <option [value]="c.value">{{c.name}}</option>
+                </select>
+                <small *ngIf="submitted && Registration.get('city').errors?.required" class="text-danger"> City is required</small>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Zip Code / Pin code </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="pincode">
+                <small *ngIf="submitted && Registration.get('pincode').errors?.required" class="text-danger"> Pincode is required</small>
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary btn1">Submit </button>
+            
+</form>
+</div>
